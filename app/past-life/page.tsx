@@ -57,7 +57,7 @@ export default function PastLifePage() {
     };
     console.log("Payload:", payload);
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/quizzes/past-life-results/`, payload);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/quizzes/past-life-results/`, payload);
       const data = response.data;
       console.log("Fetched data:", data);
       //  || data.id || data.resultId;

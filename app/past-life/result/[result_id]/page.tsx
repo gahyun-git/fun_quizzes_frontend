@@ -25,7 +25,7 @@ const ResultPage: React.FC<{ params: Promise<Params> }> = ({ params }) => {
   useEffect(() => {
     if (resultId) {
       console.log("Fetching data for resultId:", resultId);
-      axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/quizzes/past-life-results/${resultId}`)
+      axios.get(`${process.env.NEXT_PUBLIC_API_URL}/quizzes/past-life-results/${resultId}`)
         .then((response) => {
           if (response.status !== 200) {
             throw new Error("Network response was not ok");
