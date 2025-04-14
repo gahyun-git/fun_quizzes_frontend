@@ -1,0 +1,120 @@
+
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+}
+
+.header {
+  background-color: #ffffff;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  color: #6200ea;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
+}
+
+.nav-list li {
+  margin: 0 15px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer; /* 포인터 커서 추가 */
+  transition: color 0.3s; /* 색상 변화 애니메이션 */
+}
+
+.nav-list li:hover {
+  color: #6200ea; /* 호버 시 색상 변경 */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 전체 화면 높이 */
+}
+
+.content {
+  flex: 1; /* 남은 공간을 차지하도록 설정 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.input-form {
+  margin: 20px auto;
+  padding: 30px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  max-width: 400px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.input-form h2 {
+  margin: 0 0 15px;
+  font-size: 1.8rem;
+  color: #6200ea;
+  text-align: center;
+}
+
+.date-inputs {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.date-group, .time-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.date-group select, .time-group select {
+  flex: 1; /* 각 select 요소가 동일한 너비를 차지하도록 설정 */
+  margin-right: 10px; /* 오른쪽 여백 추가 */
+  border: 1px solid #e0e0e0; /* 테두리 추가 */
+  border-radius: 5px; /* 모서리 둥글게 */
+  padding: 10px; /* 패딩 추가 */
+  transition: border-color 0.3s; /* 테두리 색상 변화 애니메이션 */
+}
+
+.date-group select:focus, .time-group select:focus {
+  border-color: #6200ea; /* 포커스 시 테두리 색상 변경 */
+  outline: none; /* 기본 아웃라인 제거 */
+}
+
+.input-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.input-form button:hover {
+  background-color: #3700b3;
+}
+
+.footer {
+  background-color: #f8f8f8;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
