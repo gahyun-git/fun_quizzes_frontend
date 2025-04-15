@@ -11,10 +11,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <Script
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-            strategy="afterInteractive"
-            async
+      <Script
+          id="adsense-script"
+          strategy="afterInteractive"
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8015585586602031"
+          crossOrigin="anonymous"
         />
         <Header />
         {children}
