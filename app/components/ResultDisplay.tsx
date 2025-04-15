@@ -21,8 +21,7 @@ const ResultDisplay: React.FC<ResultProps> = ({ result }) => {
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-6 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4 text-center text-purple-600">{result.past_name}</h1>
-      <p className="text-gray-700 mb-4">{result.past_story}</p>
+      <h1 className="text-2xl font-bold mb-4 text-center text-purple-600">당신의 전생은 <br />{result.past_name} 입니다 👀</h1>
       <Image
         src={result.past_image_url}
         alt="전생 이미지"
@@ -31,7 +30,7 @@ const ResultDisplay: React.FC<ResultProps> = ({ result }) => {
         className="rounded-lg"
         unoptimized
       />
-      <button onClick={() => router.push("/past-life")}>다시하기</button>
+      <button onClick={() => router.push("/past-life")} className="bg-purple-600 text-white font-bold py-2 px-4 rounded hover:bg-purple-700 w-full transition duration-300">다시하기</button>
     </div>
   );
 };
