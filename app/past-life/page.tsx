@@ -30,7 +30,6 @@ export default function PastLifePage() {
     }));
   };
 
-  // ✅ 광고 닫은 뒤 실행될 API 요청 함수
   const handleApiSubmit = async () => {
     setFormState((prev) => ({ ...prev, loading: true, error: "" }));
 

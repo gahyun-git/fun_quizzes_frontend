@@ -80,24 +80,40 @@ export default function InputForm({
           </div>
         </div>
 
-        {/* 태어난 시간 입력 */}
         <div className="mb-4">
           <label className="block text-gray-700">태어난 시간</label>
+          <label className="flex items-center mb-2">
+            <input
+              type="checkbox"
+              name="unknownBirthTime"
+              checked={formState.unknownBirthTime}
+              onChange={(e) => {
+                onChange(e);
+                if (e.target.checked) {
+                  formState.birthHour = "";
+                  formState.birthMinute = "";
+                  formState.ampm = "";
+                }
+              }}
+              className="mr-2"
+            />
+            태어난 시간을 모름
+          </label>
           {!formState.unknownBirthTime && (
             <div className="flex space-x-2">
-              <select name="birthHour" value={formState.birthHour} onChange={onChange} required className="border rounded p-2 flex-1">
+              <select name="birthHour" value={formState.birthHour} onChange={onChange} required className="border rounded p-2 flex-1 focus:outline-none focus:ring-2 focus:ring-purple-600">
                 <option value="">시</option>
                 {hours.map((hour) => (
                   <option key={hour} value={hour}>{hour}시</option>
                 ))}
               </select>
-              <select name="birthMinute" value={formState.birthMinute} onChange={onChange} required className="border rounded p-2 flex-1">
+              <select name="birthMinute" value={formState.birthMinute} onChange={onChange} required className="border rounded p-2 flex-1 focus:outline-none focus:ring-2 focus:ring-purple-600">
                 <option value="">분</option>
                 {minutes.map((minute) => (
                   <option key={minute} value={minute}>{minute}분</option>
                 ))}
               </select>
-              <select name="ampm" value={formState.ampm} onChange={onChange} required className="border rounded p-2 flex-1">
+              <select name="ampm" value={formState.ampm} onChange={onChange} required className="border rounded p-2 flex-1 focus:outline-none focus:ring-2 focus:ring-purple-600">
                 <option value="">오전/오후</option>
                 {ampmList.map((ap) => (
                   <option key={ap} value={ap}>{ap}</option>
