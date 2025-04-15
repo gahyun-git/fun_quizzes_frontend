@@ -29,6 +29,7 @@ const ResultDisplay: React.FC<ResultProps> = ({ result }) => {
         width={1024}
         height={1024}
         className="rounded-lg"
+        unoptimized
       />
       <button onClick={() => router.push("/past-life")}>다시하기</button>
     </div>
