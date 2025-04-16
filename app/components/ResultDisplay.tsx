@@ -21,7 +21,7 @@ const ResultDisplay: React.FC<ResultProps> = ({ result }) => {
 
   return (
     <div className="bg-white shadow-2xl rounded-2xl p-8 max-w-md mx-auto">
-      <h1 className="text-3xl font-bold mb-6 text-center text-indigo-600">
+      <h1 className="text-xl font-bold mb-6 text-center text-indigo-600">
         당신의 전생은 <br />{result.past_name} 입니다 👀
       </h1>
       <Image
