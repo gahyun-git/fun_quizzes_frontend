@@ -50,7 +50,7 @@ export default function PastLifePage() {
     };
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/quizzes/past-life-results/`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/quizzes/past-life-results/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
