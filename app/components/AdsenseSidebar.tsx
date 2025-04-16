@@ -13,7 +13,7 @@ export default function AdsenseSidebar() {
   }, []);
 
   return (
-    <div className="hidden lg:block fixed top-40 right-4 w-60">
+    <div className="hidden lg:block fixed top-40 right-4 w-30" style={{ maxWidth: '120px', maxHeight: '600px' }}>
       <Adsense adSlot="1383923993" className="w-full" />
     </div>
   );
