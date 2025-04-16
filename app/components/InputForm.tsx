@@ -1,6 +1,6 @@
 "use client";
 
-import React, { RefObject, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { FormState } from "./FormState";
 import useDateOptions from "../hooks/useDateOptions";
 import {
@@ -138,13 +138,7 @@ export default function InputForm({
             </label>
             <select
               value={formState.birthHour}
-              onChange={(e) =>
-                handleHourChange(
-                  e.target.value,
-                  setFormState,
-                  minuteRef as RefObject<HTMLSelectElement>
-                )
-              }
+              onChange={(e) => handleHourChange(e.target.value, setFormState)}
               disabled={formState.unknownBirthTime}
               required={!formState.unknownBirthTime}
               className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -159,13 +153,7 @@ export default function InputForm({
             <select
               ref={minuteRef as React.RefObject<HTMLSelectElement>}
               value={formState.birthMinute}
-              onChange={(e) =>
-                handleMinuteChange(
-                  e.target.value,
-                  setFormState,
-                  ampmRef as RefObject<HTMLSelectElement>
-                )
-              }
+              onChange={(e) => handleMinuteChange(e.target.value, setFormState)}
               disabled={formState.unknownBirthTime}
               required={!formState.unknownBirthTime}
               className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
