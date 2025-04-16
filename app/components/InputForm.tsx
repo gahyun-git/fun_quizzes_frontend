@@ -1,94 +1,160 @@
 "use client";
 
 import React from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { Combobox } from "@headlessui/react";
+import { FormState } from "./FormState";
+import useDateOptions from "../hooks/useDateOptions";
+import {
+  handleYearChange,
+  handleMonthChange,
+  handleDayChange,
+  handleUnknownTimeChange,
+} from "./handlers";
+import AdsenseModal from "./AdsenseModal";
 
-import { FormState } from "./InputForm.types";
-interface Props {
+interface InputFormProps {
   formState: FormState;
-  onChangeDate: (date: Date | null) => void;
-  onChangeTime: (time: string) => void;
-  onToggleUnknown: () => void;
-  onSubmit: () => void;
+  setFormState: React.Dispatch<React.SetStateAction<FormState>>;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  showAds: boolean;
+  onAdClose: () => void;
 }
-
-const timeOptions = [
-  "오전 12시", "오전 1시", "오전 2시", "오전 3시", "오전 4시", "오전 5시",
-  "오전 6시", "오전 7시", "오전 8시", "오전 9시", "오전 10시", "오전 11시",
-  "오후 12시", "오후 1시", "오후 2시", "오후 3시", "오후 4시", "오후 5시",
-  "오후 6시", "오후 7시", "오후 8시", "오후 9시", "오후 10시", "오후 11시"
-];
 
 export default function InputForm({
   formState,
-  onChangeDate,
-  onChangeTime,
-  onToggleUnknown,
-  onSubmit
-}: Props) {
+  setFormState,
+  onSubmit,
+  showAds,
+  onAdClose,
+}: InputFormProps) {
+  const { years, months, days, hours, minutes, ampmList } = useDateOptions();
+
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto">
-      <h2 className="text-xl font-bold mb-4 text-purple-700 text-center">전생 알아보기</h2>
+    <>
+      {showAds && <AdsenseModal onClose={onAdClose} />}
 
-      <div className="mb-4">
-        <label className="block text-gray-700 mb-1">생년월일</label>
-        <DatePicker
-          selected={formState.selectedDate}
-          onChange={onChangeDate}
-          dateFormat="yyyy-MM-dd"
-          className="w-full border p-2 rounded"
-          placeholderText="날짜 선택"
-        />
-      </div>
+      <form
+        onSubmit={onSubmit}
+        className="bg-white shadow-lg rounded-lg p-6 max-w-lg mx-auto space-y-6 animate-fade-in"
+      >
+        <h2 className="text-2xl font-bold text-center text-purple-700">생년월일 입력</h2>
 
-      {!formState.unknownBirthTime && (
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-1">태어난 시간</label>
-          <Combobox value={formState.birthTime} onChange={onChangeTime}>
-            <Combobox.Input
-              className="w-full border p-2 rounded"
-              placeholder="시간 선택"
-              onChange={(e) => onChangeTime(e.target.value)}
-            />
-            <Combobox.Options className="border mt-1 rounded bg-white max-h-40 overflow-y-auto">
-              {timeOptions.map((time) => (
-                <Combobox.Option
-                  key={time}
-                  value={time}
-                  className={({ active }) =>
-                    `px-4 py-2 cursor-pointer ${active ? "bg-purple-100" : ""}`
-                  }
-                >
-                  {time}
-                </Combobox.Option>
+        {/* 생년월일 */}
+        <div>
+          <label className="block text-gray-700 mb-2">생년월일</label>
+          <div className="grid grid-cols-3 gap-2">
+            <select
+              value={formState.birthYear}
+              onChange={(e) => handleYearChange(e.target.value, setFormState)}
+              required
+              className="border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-400"
+            >
+              <option value="">연도</option>
+              {years.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
               ))}
-            </Combobox.Options>
-          </Combobox>
+            </select>
+            <select
+              value={formState.birthMonth}
+              onChange={(e) => handleMonthChange(e.target.value, setFormState)}
+              required
+              className="border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-400"
+            >
+              <option value="">월</option>
+              {months.map((month) => (
+                <option key={month} value={month}>
+                  {month}
+                </option>
+              ))}
+            </select>
+            <select
+              value={formState.birthDay}
+              onChange={(e) => handleDayChange(e.target.value, setFormState)}
+              required
+              className="border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-400"
+            >
+              <option value="">일</option>
+              {days.map((day) => (
+                <option key={day} value={day}>
+                  {day}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-      )}
 
-      <div className="mb-4">
-        <label className="flex items-center space-x-2">
+        {/* 태어난 시간 */}
+        {!formState.unknownBirthTime && (
+          <div>
+            <label className="block text-gray-700 mb-2">태어난 시간</label>
+            <div className="grid grid-cols-3 gap-2">
+              <select
+                value={formState.birthHour}
+                onChange={(e) => setFormState((prev) => ({ ...prev, birthHour: e.target.value }))}
+                required
+                className="border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-400"
+              >
+                <option value="">시</option>
+                {hours.map((h) => (
+                  <option key={h} value={h}>
+                    {h}
+                  </option>
+                ))}
+              </select>
+              <select
+                value={formState.birthMinute}
+                onChange={(e) => setFormState((prev) => ({ ...prev, birthMinute: e.target.value }))}
+                required
+                className="border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-400"
+              >
+                <option value="">분</option>
+                {minutes.map((m) => (
+                  <option key={m} value={m}>
+                    {m}
+                  </option>
+                ))}
+              </select>
+              <select
+                value={formState.ampm}
+                onChange={(e) => setFormState((prev) => ({ ...prev, ampm: e.target.value }))}
+                required
+                className="border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-400"
+              >
+                <option value="">오전/오후</option>
+                {ampmList.map((ap) => (
+                  <option key={ap} value={ap}>
+                    {ap}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        )}
+
+        {/* 태어난 시간 모름 */}
+        <div className="flex items-center">
           <input
             type="checkbox"
             checked={formState.unknownBirthTime}
-            onChange={onToggleUnknown}
+            onChange={(e) => handleUnknownTimeChange(e.target.checked, setFormState)}
+            className="mr-2"
           />
-          <span>태어난 시간을 모름</span>
-        </label>
-      </div>
+          <label className="text-sm text-gray-700">태어난 시간을 모름</label>
+        </div>
 
-      <button
-        onClick={onSubmit}
-        className="bg-purple-600 text-white px-4 py-2 rounded w-full hover:bg-purple-700"
-        disabled={formState.loading}
-      >
-        {formState.loading ? "생성 중..." : "전생 알아보기"}
-      </button>
+        {/* 에러 메시지 */}
+        {formState.error && <p className="text-red-500 text-sm">{formState.error}</p>}
 
-      {formState.error && <p className="text-red-500 mt-2">{formState.error}</p>}
-    </div>
+        {/* 버튼 */}
+        <button
+          type="submit"
+          disabled={formState.loading}
+          className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded transition"
+        >
+          {formState.loading ? "생성 중..." : "전생 알아보기"}
+        </button>
+      </form>
+    </>
   );
 }
