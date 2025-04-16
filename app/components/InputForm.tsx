@@ -49,7 +49,7 @@ export default function InputForm({
         <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center backdrop-blur-sm">
           <div className="bg-white p-6 rounded-2xl shadow-2xl max-w-sm w-full text-center">
             <p className="text-lg font-semibold mb-4 text-gray-800">
-              광고 시청 후 계속됩니다
+              광고주 모집중~! 광고 시청 후 계속됩니다
             </p>
             <Adsense adSlot="5736158358" />
             <button
@@ -64,17 +64,15 @@ export default function InputForm({
 
       <form
         onSubmit={onSubmit}
-        className="bg-white shadow-xl rounded-2xl p-8 max-w-lg mx-auto space-y-6 transform transition-all duration-500 hover:scale-[1.01] animate-fade-in"
+        className="bg-white shadow-xl rounded-2xl px-4 py-6 sm:px-8 sm:py-8 max-w-lg mx-auto space-y-6 animate-fade-in"
       >
-        <h2 className="text-3xl font-bold text-center text-indigo-600">
+        <h2 className="text-xl font-bold text-center text-indigo-500">
           생일로 알아보는 전생테스트
         </h2>
 
         {/* 생년월일 */}
         <div>
-          <label className="block text-gray-700 mb-2 font-medium">
-            생년월일
-          </label>
+          <label className="block text-gray-700 mb-2 font-medium">생년월일</label>
           <div className="grid grid-cols-3 gap-3">
             <select
               ref={yearRef}
@@ -128,12 +126,8 @@ export default function InputForm({
 
         {/* 태어난 시간 */}
         <div className="transition-all duration-300">
-          <div
-            className={`grid grid-cols-3 gap-3 overflow-hidden ${
-              formState.unknownBirthTime ? "opacity-0 h-0" : "opacity-100 h-auto"
-            }`}
-          >
-            <label className="col-span-3 block text-gray-700 font-medium">
+          <div className={`grid grid-cols-3 gap-3 overflow-hidden ${formState.unknownBirthTime ? "opacity-0 h-0" : "opacity-100 h-auto"}`}>
+            <label className="col-span-3 block text-gray-800 font-medium">
               태어난 시간
             </label>
             <select
@@ -188,9 +182,7 @@ export default function InputForm({
           <input
             type="checkbox"
             checked={formState.unknownBirthTime}
-            onChange={(e) =>
-              handleUnknownTimeChange(e.target.checked, setFormState)
-            }
+            onChange={(e) => handleUnknownTimeChange(e.target.checked, setFormState)}
             className="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
             aria-label="태어난 시간을 모름"
             id="unknownBirthTime"
@@ -200,9 +192,7 @@ export default function InputForm({
           </label>
         </div>
 
-        {formState.error && (
-          <p className="text-red-500 text-sm">{formState.error}</p>
-        )}
+        {formState.error && <p className="text-red-500 text-sm">{formState.error}</p>}
 
         <button
           type="submit"

@@ -9,7 +9,7 @@ export const metadata = {
 export default function PastLifeLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="w-full py-2">
+      <div className="w-full py-1 max-h-8 overflow-hidden">
         <Adsense adSlot="6336987696" className="mx-auto w-full max-w-5xl" />
       </div>
 

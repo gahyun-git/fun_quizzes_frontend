@@ -71,8 +71,8 @@ export default function PastLifePage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 to-blue-200 p-4">
-      <div className="bg-white rounded-lg shadow-md p-6 max-w-xl w-full">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 to-blue-200 p-4 sm:p-6">
+      <div className="w-full max-w-lg bg-white rounded-lg shadow-md p-4 sm:p-6">
         <InputForm
           formState={formState}
           setFormState={setFormState}
