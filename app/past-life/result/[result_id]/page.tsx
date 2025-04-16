@@ -46,10 +46,20 @@ const ResultPage: React.FC<{ params: Promise<Params> }> = ({ params }) => {
   }, [resultId, router]);
 
   if (loading) {
-    return <p className="text-center">Loading...</p>;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-300 to-gray-500 p-4">
+        <p className="text-2xl font-semibold text-white">Loading...</p>
+      </div>
+    );
   }
 
-  return <ResultDisplay result={result} />;
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-300 to-gray-500 p-4">
+      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-3xl">
+        <ResultDisplay result={result} />
+      </div>
+    </div>
+  );
 };
 
 export default ResultPage;

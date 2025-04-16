@@ -71,12 +71,16 @@ export default function PastLifePage() {
   };
 
   return (
-    <InputForm
-      formState={formState}
-      setFormState={setFormState}
-      onSubmit={handleSubmit}
-      showAds={showAds}
-      onAdClose={handleAdClose}
-    />
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 to-blue-200 p-4">
+      <div className="bg-white rounded-lg shadow-md p-6 max-w-xl w-full">
+        <InputForm
+          formState={formState}
+          setFormState={setFormState}
+          onSubmit={handleSubmit}
+          showAds={showAds}
+          onAdClose={handleAdClose}
+        />
+      </div>
+    </div>
   );
 }
