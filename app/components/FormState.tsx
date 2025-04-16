@@ -9,3 +9,15 @@ export interface FormState {
   loading: boolean;
   error: string;
 }
+
+export const initialFormState: FormState = {
+  birthYear: "",
+  birthMonth: "",
+  birthDay: "",
+  birthHour: "",
+  birthMinute: "",
+  ampm: "",
+  unknownBirthTime: false,
+  loading: false,
+  error: "",
+};
